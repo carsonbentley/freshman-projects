@@ -214,3 +214,16 @@ Deliver:
         *   ...to the next version of Python?
 *   [ ] Make one final commit and push your **completed** Software Development Plan to GitLab.
 *   [ ] Respond to the **Assignment Reflection Survey** on Canvas.
+My program is pretty well written and easy to understand. Some of the 3rd party library sytanx may 
+be a little hard to understand at first, but that can easily be fixed with a Google Search. Some of the 
+error checking for the command line arguments may be a little long and sloppy, but it is still only 
+a few lines. I am sure and confident on every part of the program, and I understand how everything
+works very well. If a bug is reported, it shouldn't be too hard to find the source because it is 
+such a short program.
+My documentation should make sense to anyone, because it does not use too many technical terms. It 
+will make sense to me in 6 months time. 
+Adding a new feature to this program should't be too hard, because new functions or modules could be added.
+The main crawler function works well, so that function could be built off of to make the program more complex
+There could be potential issues if python or my systems hardware was updated, because of the 3rd party libraries 
+used. These libraries would have to stay up to date with the current version of python, or the program could be 
+inoperable or be left with bugs. The program should continue to work well after upgrading my systems hardware. 
