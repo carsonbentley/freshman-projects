@@ -129,7 +129,11 @@ Deliver:
 *   [ ] Note any relevant and interesting events that happened while you wrote the code.
     *   e.g. things you learned, things that didn't go according to plan.
 *   [ ] **Tag** the last commit in this phase `implemented` and push it to GitLab.
-
+My code followed the pseuocode that I wrote very well. Everything went pretty closly to my plan.
+I did have a little issue that would cause my program to quit after printing one url, but I fixed 
+it by converting the url to a string, and passing in the text of the response object into beautiful soup.
+The only other issues that I had were sytanx questions about the new libraries, but the demo programs
+helped me pretty well. My code works very well, and should only have a few bugs.
 
 ## Phase 3: Testing and Debugging (tag name `tested`)
 *(30% of your effort)*

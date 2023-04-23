@@ -30,10 +30,9 @@ import sys
 import time  	  	  
 
 
-print("\tTODO: delete each TODO message as you fulfill it", file=sys.stderr)  	  	  
 
-print("\tTODO: Change the parameters that crawl takes.", file=sys.stderr)  	  	  
-def crawl(url):  	  	  
+
+def crawl(url, depth, maxdepth, visited):
     """  	  	  
     Given an absolute URL, print each hyperlink found within the document.  	  	  
     This function will need more parameters.  	  	  
@@ -45,18 +44,40 @@ def crawl(url):
     1) The maximum depth of recursion is reached  	  	  
     """  	  	  
 
-    print("\tTODO: Check the current depth of recursion; return now if you have gone too deep", file=sys.stderr)  	  	  
-    print("\tTODO: Print this URL with indentation indicating the current depth of recursion", file=sys.stderr)  	  	  
-    print("\tTODO: Handle exceptions raised by requests and BeautifulSoup to prevent this program from crashing", file=sys.stderr)  	  	  
-    print("\tTODO: Make a GET request with the 'requests' library", file=sys.stderr)  	  	  
-    print("\tTODO: Use BeautifulSoup to find all of the <a> tags with an 'href'", file=sys.stderr)  	  	  
-    print("\tTODO: Create an absolute address from a (possibly) relative URL", file=sys.stderr)  	  	  
-    print("\tTODO: Only HTTP or HTTPS links need be followed", file=sys.stderr)  	  	  
-    print("\tTODO: Don't just print URLs found in this document, visit them!", file=sys.stderr)  	  	  
-    print("\tTODO: Trim fragments ('#' to the end) from URLs", file=sys.stderr)  	  	  
-    print("\tTODO: Use a `set` data structure to keep track of URLs you've already visited", file=sys.stderr)  	  	  
-    print("\tTODO: Call crawl() on unvisited URLs", file=sys.stderr)  	  	  
-    return  	  	  
+    if (depth > maxdepth):
+        return
+    if (url in visited):
+        return
+    numSpaces = "    " * depth
+    print(numSpaces + url)
+    visited.add(url)
+    try:
+        r = requests.get(url)
+    except Exception as e:
+        print(e)
+        return
+    try:
+        soup = BeautifulSoup(r.text, 'html.parser')
+        links = soup.find_all('a')
+        if links:
+            for link in links:
+                if link.get('href'):
+                    new_url = str(link.get('href'))
+                    parsed = urlparse(new_url)
+                    if not (parsed.scheme and parsed.netloc):
+                        new_url = urljoin(url, new_url)
+                    #if parsed.scheme != ('http' or 'https'):
+                        #continue
+                    if parsed.fragment:
+                        new_url = new_url.split('#')[0]
+                    crawl(new_url, depth + 1, maxdepth, visited)
+                else:
+                    continue
+        else:
+            return
+    except Exception as e:
+        print(e)
+        return
 
 
 # If the crawler.py module is loaded as the main module, allow our `crawl` function to be used as a command line tool  	  	  
@@ -64,25 +85,32 @@ if __name__ == "__main__":
 
     ## If no arguments are given...  	  	  
     if len(sys.argv) < 2:  	  	  
-        print("TODO: Put a helpful usage message here.", file=sys.stderr)  	  	  
+        print("Error: no URL supplied", file=sys.stderr)
         exit(0)  	  	  
     else:  	  	  
         url = sys.argv[1]  	  	  
 
-    print("\tTODO: determine whether variable `url` is an absolute URL", file=sys.stderr)  	  	  
-    print("\t\tIf `url` is not absolute, notify the user and exit", file=sys.stderr)  	  	  
+    parsed = urlparse(url)
+    if not (parsed.scheme and parsed.netloc):
+        print("Error: Invalid URL supplied.")
+        print("Please supply an absolute URL")
+        exit(0)
 
-    print("\tTODO: allow the user to optionally override the default recursion depth of 3", file=sys.stderr)  	  	  
-    maxDepth = 3  	  	  
-
-    plural = 's' if maxDepth != 1 else ''  	  	  
+    maxDepth = 3
+    if len(sys.argv) >= 3:
+        maxDepth = int(sys.argv[2])
+    plural = 's' if maxDepth != 1 else ''
     print(f"Crawling from {url} to a maximum depth of {maxDepth} link{plural}")  	  	  
 
-    print("\tTODO: note what time the program began", file=sys.stderr)  	  	  
-
-    print("\tTODO: crawl() keeps track of its max depth with a parameter, not a global!", file=sys.stderr)  	  	  
-    print("\tTODO: wrap this call to crawl() in a try/except block to catch KeyboardInterrupt", file=sys.stderr)  	  	  
-    crawl(url)  	  	  
-
-    print("\tTODO: after the program finishes for any reason, report how long it ran and the number of unique URLs visited", file=sys.stderr)  	  	  
-    print("\tTODO: are all of the TODOs deleted?", file=sys.stderr)  	  	  
+    before = time.time()
+    visited = set()
+    try:
+        crawl(url, 0, maxDepth, visited)
+    except KeyboardInterrupt:
+        #ensure 'control c' will not be printed to console
+        sys.stderr.write("\r")
+    lvisited = len(visited)
+    after = time.time()
+    time = after - before
+    plural = 's' if lvisited != 1 else ''
+    print(f"Visited {lvisited} unique page{plural} in {round(time, 4)}.")
