@@ -66,9 +66,59 @@ Deliver:
     *   Write a few specific examples that occur to you, and use them later when testing.
 *   [ ] **Tag** the last commit in this phase `designed` and push it to GitLab.
     *   *Grace Points: if this tag is pushed by midnight on the Sunday before the due date, you will receive up to 5 points back*
+crawler psueodcode:
+	define crawl(URL, current depth, maxdepth, visited(set))
+		#Base cases
+		if the current depth is greater than the maxdepth, return
+		if the supplied url is in the visited set, return
+		Print 4 " " times the depth, plus the URL
+		Add the URL to set visited
+		Visit the URL using requests.get()
+		If requests.get throws error, 
+			print exceptions raised, return
+		Scan the html given by requests.get for anchor tags <a>(representing 
+		new links) with BeautifulSoup
+		For each of the anchor tags:
+		check for href attribute(URL link). If no href, continue.
+		create variable new_url, set equal to string in href attribute
+		discard fragments in new_url, if relative URL, make it absolute
+		recursively call crawl(new_url, depth +1, maxdepth, visited(set)
+if crawler is loaded as main module:
+	if no arguments given:
+		print usage message telling user to input absolute url and optionally 
+		depth
+	else:
+		make variable url, set equal to the first command line argument
+	use urlparse() on url, check if there is netloc and scheme.
+	if no netloc and scheme:
+		print error message, print message telling user to provide absolute url
+	create variable maxdepth, set equal to 3
+	create variable plural, set equal to s if maxdepth is not one, else
+        its a space.
+	if second command line argument is provided:
+		set maxdepth to second command line argument.
+	print crawling from url provided, to maxdepth(plural)
+	take time.
+	try:
+		crawl(url, depth = 0, maxdepth = maxdepth, visited = empty set)
+	except KeyBoard Interupt error:
+		take time
+		print system report with time and contents of visited
+		exit program
+	print system report with time and contents of visited
+	exit program
+In the face of good input, the program will run as expected, printing out reports and 
+urls of websites visited, and error messages when websites are faulty. Program will 
+print out end report and exit the program.
+In the face of no command line arguments, usage message will be printed out. If user 
+supplied relative or invalid url, and error and a usage message will be printed out. If 
+user supplied 2 arguments, and the second is negative or not an integer, the program 
+will default to a max recursion depth of 3, and procede as normal. If more than 2 
+command line arguments are given the program will ignore extra arguments. 
 
 
-## Phase 2: Implementation (tag name `implemented`)
+
+ ## Phase 2: Implementation (tag name `implemented`)
 *(15% of your effort)*
 
 **Finally, you can write code!**
