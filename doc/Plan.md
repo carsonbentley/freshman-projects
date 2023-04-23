@@ -145,7 +145,35 @@ Deliver:
     *   For any bugs discovered, describe their cause and remedy.
     *   Write your test cases in plain language such that a non-coder could run them and replicate your experience.
 *   [ ] **Tag** the last commit in this phase `tested` and push it to GitLab.
-
+First, I tested the command line arguments. I ran the program with no arguments, 
+and it exited with an error message. I ran the program with one URL, and the 
+program defaulted to maxDepth of 3. I ran the program with an invalid url, and a 
+usage message was printed. Next, I inputted a negative number into the second 
+command argument field. I forgot to check if the 2nd argument was a whole digit 
+greater than or equal to 0, so I added code that checked to make sure the maxdepth 
+was valid. I tried a character, string, negative number, and a float value in the 
+command line as the second argument, and in every case the program defaulted to a 
+maxdepth of 3. Lastly, I tried putting extra arguments into the program, and they 
+had no effect.
+After testing the command line, I moved onto testing the crawl function. I ran all 
+of the test cases that were given to us as examples from the test server, and my 
+program gave the correct output for every one. I specified 0 links, and the program 
+just outputted the one link. I added a plural clause into the report so it would 
+print 'page', instead of '1 unique pages'. I tested my program on cs.usu.edu, and 
+checked the output for error messages. My program was not swallowing the error 
+messages, and instead was printing them out while not crashing. When I tried to 
+input a large number into the maxdepth while using the testing server when I 
+specified a large number into the breadth field, my program would crash with an 
+error stating max retries exceeded with url, which I assume is not at the fault of 
+my program. It worked when I specified a breadth of 20 with a depth of 30, with no 
+errors.
+My program quits immediatly when I input control c, and also prints out the report. 
+My program was printing out the 'control C' keys onto the terminal, so I went on 
+stackOverflow and found a simple piece of code that wrote the message into the 
+error file, and it fixed my problem.
+My program formats the output with no issues, and shows the correct level of 
+indentation for each level of recursion. it prints out the reports and usage 
+messages with no typos or spacing issues.  
 
 ## Phase 4: Deployment (tag name `deployed`)
 *(5% of your effort)*

@@ -98,7 +98,11 @@ if __name__ == "__main__":
 
     maxDepth = 3
     if len(sys.argv) >= 3:
-        maxDepth = int(sys.argv[2])
+        if (sys.argv[2].isdigit() and (not '.' in sys.argv[2])):
+            if int(sys.argv[2]) >= 0:
+                maxDepth = int(sys.argv[2])
+        else:
+            maxDepth = 3
     plural = 's' if maxDepth != 1 else ''
     print(f"Crawling from {url} to a maximum depth of {maxDepth} link{plural}")  	  	  
 

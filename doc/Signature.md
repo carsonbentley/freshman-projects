@@ -5,3 +5,4 @@
 |April 22     |1.5 hours   |Finished Phase 0
 |April 23     |1 hour      |Finished Phase 1
 |April 23     |1 hour      |Finished Phase 2
+|April 23     |1 hour      |Finished Phase 3
