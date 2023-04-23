@@ -6,3 +6,5 @@
 |April 23     |1 hour      |Finished Phase 1
 |April 23     |1 hour      |Finished Phase 2
 |April 23     |1 hour      |Finished Phase 3
+|-----------------------------------------------
+|TOTAL        |4.5 hours   |2 days
