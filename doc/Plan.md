@@ -19,7 +19,35 @@ Deliver:
 *   [ ] List the algorithms that will be used (but don't write them yet).
 *   [ ] **Tag** the last commit in this phase `analyzed` and push it to GitLab.
     *   *Grace Points: if this tag is pushed by midnight on the Sunday before the due date, you will receive up to 5 points back*
-
+The instructions for this assignment is pretty well outlined in the source code todo 
+lines. The crawl function is written recursviely, although it will have a loop inside of 
+the function. The parameters for crawl will have to be modified to allow depths and 
+urls, maxdepth, and a set of visited urls. The base cases will be if the depth is more 
+than the maxdepth, or if the given url has already been visited, or if the url is 
+invalid. If all these cases are untrue, then the url will be printed with the spaces 
+relative to the depth of recursion, mark the url as visited, use requests libraries to 
+get the url. It will use exception handling to print any exceptions and return crawl(). 
+Scan the html for anchor tags(other urls), and check for href attributes. If no 
+attribues, continue to next iterations. If attributes, discard fragment portion, make 
+into absolute url, and call crawl again with the correct parameters. The program will be 
+able to take command line arguments, and if none are given, usage message will be 
+provided. If 1 is given, the argument is the starting url. The second command line 
+argument, if given, is the maximum depth of recursion. The output of the program will 
+have a message of the starting url and max crawl depth, and it will print out the urls 
+visited with correct levels of indentation(tied to the recursion level). Bfore program 
+exits, print report including time, number of links. If program is quit on keyboard 
+interrupt, the report is still printed out. IF there is any errors in the libraries, the 
+program does not quit and instead prints an error message and continues on with the 
+pograms. 
+The program aims to solve the problem of a recursive web crawler. A good solution 
+outputs the correct output, without crashes or bugs. I believe that I know how to solve 
+all of the problems in the program, and will just need to figure out how to use the 
+libraries well. The demo program is very good though, and should help me solve 
+evertyhing I need to do. I can see a little bit of challenges in figuring out some of 
+these libraries. 
+The data used by the program comes from the internet and the command line. The output 
+consists of the recursive return strings, and the report.
+There will be recursive algorithms used in this program. 
 
 ## Phase 1: Design (tag name `designed`)
 *(30% of your effort)*
