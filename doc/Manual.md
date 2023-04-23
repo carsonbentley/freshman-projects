@@ -6,7 +6,7 @@ into the src directory and run 'python3 crawler.py'.
 The crawler.py program take 2 arguments, an absolute URL and a maximum recursion depth. 
 The absolute URL command line argument is REQUIRED. If this is not supplied, the program 
 will quit with a usage message. The URL must be absolute, and include a scheme(http, 
-https, etc) followed by a :// token, followed by a hostname.
+https) followed by a :// token, followed by a hostname.
 
 If the second command line argument is not inputted, the program will default to a 
 maximum recursion depth of 3. This means that the program follow a link on the webpage 

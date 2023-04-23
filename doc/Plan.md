@@ -227,3 +227,7 @@ The main crawler function works well, so that function could be built off of to 
 There could be potential issues if python or my systems hardware was updated, because of the 3rd party libraries 
 used. These libraries would have to stay up to date with the current version of python, or the program could be 
 inoperable or be left with bugs. The program should continue to work well after upgrading my systems hardware. 
+
+EDIT:
+read through instructions one more time, realized that scheme in the inputted URL must be either HTTP or HTTPS.
+Modified code and Manual to only accept URLS beginning with HTTP or HTTPS.

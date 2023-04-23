@@ -66,8 +66,6 @@ def crawl(url, depth, maxdepth, visited):
                     parsed = urlparse(new_url)
                     if not (parsed.scheme and parsed.netloc):
                         new_url = urljoin(url, new_url)
-                    #if parsed.scheme != ('http' or 'https'):
-                        #continue
                     if parsed.fragment:
                         new_url = new_url.split('#')[0]
                     crawl(new_url, depth + 1, maxdepth, visited)
@@ -91,7 +89,7 @@ if __name__ == "__main__":
         url = sys.argv[1]  	  	  
 
     parsed = urlparse(url)
-    if not (parsed.scheme and parsed.netloc):
+    if not ((parsed.scheme == 'http://' or 'https://') and parsed.netloc):
         print("Error: Invalid URL supplied.")
         print("Please supply an absolute URL")
         exit(0)
